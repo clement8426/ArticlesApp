@@ -3,7 +3,7 @@ class PagesController < ApplicationController
 
   def home
     @posts = Post.all
-    @random_posts = @posts.sample(4)
+    @random_posts = @posts.sample(3)
 
   end
 

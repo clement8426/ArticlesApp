@@ -1,24 +1,26 @@
 <div class="container">
   <div class="row">
     <div class="col-md-8 offset-md-2">
-      <%= link_to "Tous les articles", posts_path, class: 'btn btn-secondary mb-3' %>
+      <%= link_to "Tous les articles", posts_path, class: 'btn btn-primary mb-3' %>
 
       <div class="card">
         <div class="card-body">
           <% if @post.post_photo.present? %>
             <%= cl_image_tag @post.post_photo, height: 300, width: 400, crop: :fill %>
+          <% else %>
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Pas_d%27image_disponible.svg/1024px-Pas_d%27image_disponible.svg.png" alt="Pas d'image disponible">
           <% end %>
           <h5 class="card-title"><%= @post.title %></h5>
           <p class="card-title"><%= @post.description %></p>
           <p class="card-text"><%= @post.content %></p>
-          <%= link_to 'View Profile', profile_path(user_id: @post.user.id), class: 'btn btn-secondary' %>
-          <p class="card-text">Created at: <%= @post.created_at %></p>
+          <%= link_to 'Voir le profil', profile_path(user_id: @post.user.id), class: 'btn btn-primary' %>
+          <p class="card-text">Créé à : <%= @post.created_at %></p>
         </div>
       </div>
 
       <div class="card mt-3">
         <div class="card-body">
-          <h5 class="card-title">commentaires</h5>
+          <h5 class="card-title">Commentaires</h5>
           <% @comments.each do |comment| %>
             <p class="card-text"><strong><%= comment.user.nickname %>:</strong> <%= comment.content %></p>
           <% end %>
@@ -32,11 +34,11 @@
           <input type="checkbox" id="comment-form-toggle" class="hidden-checkbox">
 
           <%= simple_form_for Comment.new, url: create_comment_post_path(@post), method: :post, html: { class: 'comment-form' } do |f| %>
-            <%= f.input :content, as: :text, placeholder: "Your comment", input_html: { rows: 3 } %>
-            <%= f.button :submit, "Ajouter", class: "btn btn-secondary " %>
+            <%= f.input :content, as: :text, placeholder: "Votre commentaire", input_html: { rows: 3 } %>
+            <%= f.button :submit, "Ajouter", class: "btn btn-primary " %>
           <% end %>
 
-          <label for="comment-form-toggle" class="btn btn-secondary sumbit-form">Ajouter un commentaire</label>
+          <label for="comment-form-toggle" class="btn btn-primary sumbit-form">Ajouter un commentaire</label>
         </div>
       </div>
     </div>

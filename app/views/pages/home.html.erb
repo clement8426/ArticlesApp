@@ -2,37 +2,39 @@
   <div class="container">
     <h1>Bienvenue sur notre Hub d'Informations !</h1>
     <p>Explorez et contribuez à une plateforme où vous pouvez publier et discuter d'articles informatifs.</p>
-    <%= simple_form_for :query, url: posts_path, method: :get, data: { controller: "search", action: "send" } do |f| %>
-      <div class="input-group">
-        <%= text_field_tag :query,
-                params[:query],
-                class: "form-control border-0 rounded-pill",
-                placeholder: "Rechercher des articles"
-              %>
-        <%= submit_tag "Rechercher", name: "", class: "btn btn-secondary ml-2" %>
-      </div>
-    <% end %>
+    <%= render "shared/search" %>
+    <div class="text-center mt-3">
+      <%= link_to "Tous les articles", posts_path, class: 'btn btn-primary mb-3' %>
+    </div>
   </div>
 </div>
 
-<div class="container mt-4">
-  <h2>Notre sélection d’articles</h2>
-  <div class="row">
+
+<h2>Notre sélection d’articles</h2>
+
+<div class="main">
+  <ul class="cards">
     <% @random_posts.each do |post| %>
-      <div class="col-md-3">
-        <div class="card mb-4">
-          <div class="card-body">
+      <li class="cards_item">
+        <div class="card">
+          <div class="card_image">
+            <span class="note">Auteur: <%= post.user.nickname %></span>
             <% if post.post_photo.present? %>
-              <%= cl_image_tag post.post_photo, height: 100, width: 200 %>
+              <%= cl_image_tag post.post_photo %>
             <% else %>
-              <!-- Gérer le cas où la photo est absente -->
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Pas_d%27image_disponible.svg/1024px-Pas_d%27image_disponible.svg.png" alt="Pas d'image disponible">
             <% end %>
-            <h5 class="card-title"><%= post.title %></h5>
-            <p class="card-text"><%= post.description %></p>
-            <%= link_to "Voir l'article", post_path(post), class: 'btn btn-secondary' %>
+          </div>
+          <div class="card_content">
+            <h2 class="card_title"><%= post.title %></h2>
+            <div class="card_text">
+              <p><%= post.description %></p>
+              <hr />
+              <%= link_to 'Voir le post', post_path(post), class: "btn post-btn" %>
+            </div>
           </div>
         </div>
-      </div>
+      </li>
     <% end %>
-  </div>
+  </ul>
 </div>
