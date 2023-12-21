@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   has_many :posts
   has_many :comments, dependent: :destroy
+  has_one_attached :photo
+
 
   validates :nickname, presence: true, length: { maximum: 50 }
 

@@ -1,4 +1,15 @@
 class PostsController < ApplicationController
+
+  def index
+    @posts = Post.all
+    if params[:query].present?
+      @posts = Post.search_by_title_and_content(params[:query])
+    end
+    if @posts.empty? && params[:query].present?
+      flash.now[:alert] = "Aucun article trouvé pour la recherche '#{params[:query]}'"
+    end
+  end
+
   def show
     @post = Post.find(params[:id])
     @comments = @post.comments
@@ -21,7 +32,30 @@ class PostsController < ApplicationController
     end
   end
 
+  def new
+    @post = Post.new
+  end
+
+  def create
+    @post = Post.new(post_params)
+    @post.user = current_user
+
+    respond_to do |format|
+      if @post.save
+        format.html { redirect_to root_path, notice: 'Arcticle ajouté avec succès.' }
+        format.json { render json: @post, status: :created, location: my_profile_path }
+      else
+        format.html { render :show }
+        format.json { render json: @post.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   private
+
+  def post_params
+    params.require(:post).permit(:title, :content, :url, :photo)
+  end
 
   def comment_params
     params.require(:comment).permit(:content, :user_id)
