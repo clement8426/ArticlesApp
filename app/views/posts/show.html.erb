@@ -33,10 +33,10 @@
 
           <%= simple_form_for Comment.new, url: create_comment_post_path(@post), method: :post, html: { class: 'comment-form' } do |f| %>
             <%= f.input :content, as: :text, placeholder: "Your comment", input_html: { rows: 3 } %>
-            <%= f.button :submit, "Ajouter", class: "btn btn-secondary" %>
+            <%= f.button :submit, "Ajouter", class: "btn btn-secondary " %>
           <% end %>
 
-          <label for="comment-form-toggle" class="btn btn-secondary">Ajouter un commentaire</label>
+          <label for="comment-form-toggle" class="btn btn-secondary sumbit-form">Ajouter un commentaire</label>
         </div>
       </div>
     </div>
