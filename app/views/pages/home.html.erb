@@ -1,2 +1,35 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="container">
+  <div class="row mt-4 mb-4">
+    <div class="col-md-12 d-flex justify-content-center">
+      <%= simple_form_for :query, url: root_path, method: :get, data: { controller: "search", action: "send" } do |f| %>
+        <div class="input-group">
+          <%= text_field_tag :query,
+                params[:query],
+                class: "form-control border-0 rounded-pill",
+                placeholder: "Search posts"
+            %>
+          <%= submit_tag "Search", name: "", class: "btn btn-secondary ml-2" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="row">
+    <% @posts.each do |post| %>
+      <div class="col-md-4 mb-4">
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title"><%= post.title %></h5>
+            <p class="card-text"><%= post.content %></p>
+              <%= link_to 'voir le post', post_path(post), class: "btn btn-secondary" %>
+              <p class="card-text">
+              <small class="text-muted">
+                Posté par l'utilisateur <%= post.user.nickname %>
+              </small>
+            </p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
