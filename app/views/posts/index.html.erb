@@ -19,11 +19,15 @@
       <div class="col-md-4 mb-4">
         <div class="card" style="width: 18rem;">
           <div class="card-body">
-            <%= cl_image_tag post.photo.key, height: 100, width: 200 %>
+            <% if post.post_photo.present? %>
+              <%= cl_image_tag post.post_photo, height: 100, width: 200 %>
+            <% else %>
+              <!-- Gérer le cas où la photo est absente -->
+            <% end %>
             <h5 class="card-title"><%= post.title %></h5>
             <p class="card-text"><%= post.description %></p>
-              <%= link_to 'voir le post', post_path(post), class: "btn btn-secondary" %>
-              <p class="card-text">
+            <%= link_to 'voir le post', post_path(post), class: "btn btn-secondary" %>
+            <p class="card-text">
               <small class="text-muted">
                 Posté par l'utilisateur <%= post.user.nickname %>
               </small>

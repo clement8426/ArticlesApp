@@ -22,8 +22,8 @@
       <div class="col-md-3">
         <div class="card mb-4">
           <div class="card-body">
-            <% if post.photo.attached? %>
-              <%= cl_image_tag post.photo.key, height: 100, width: 200 %>
+            <% if post.post_photo.present? %>
+              <%= cl_image_tag post.post_photo, height: 100, width: 200 %>
             <% else %>
               <!-- Gérer le cas où la photo est absente -->
             <% end %>

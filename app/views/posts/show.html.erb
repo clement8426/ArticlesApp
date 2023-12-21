@@ -5,7 +5,9 @@
 
       <div class="card">
         <div class="card-body">
-          <%= cl_image_tag @post.photo.key, height: 300, width: 400, crop: :fill %>
+          <% if @post.post_photo.present? %>
+            <%= cl_image_tag @post.post_photo, height: 300, width: 400, crop: :fill %>
+          <% end %>
           <h5 class="card-title"><%= @post.title %></h5>
           <p class="card-title"><%= @post.description %></p>
           <p class="card-text"><%= @post.content %></p>
@@ -22,7 +24,6 @@
           <% end %>
         </div>
       </div>
-
 
       <div class="card mt-3">
         <div class="card-body">
