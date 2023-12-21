@@ -1,40 +1,33 @@
 <div class="container">
   <div class="row mt-4 mb-4">
     <div class="col-md-12 d-flex justify-content-center">
-      <%= simple_form_for :query, url: posts_path, method: :get, data: { controller: "search", action: "send" } do |f| %>
-        <div class="input-group">
-          <%= text_field_tag :query,
-                params[:query],
-                class: "form-control border-0 rounded-pill",
-                placeholder: "Search posts"
-            %>
-          <%= submit_tag "Search", name: "", class: "btn btn-secondary ml-2" %>
-        </div>
-      <% end %>
+      <%= render "shared/search" %>
     </div>
   </div>
 
-  <div class="row">
+<div class="main">
+  <ul class="cards">
     <% @posts.each do |post| %>
-      <div class="col-md-4 mb-4">
-        <div class="card" style="width: 18rem;">
-          <div class="card-body">
+      <li class="cards_item">
+        <div class="card">
+          <div class="card_image">
+            <span class="note">Auteur: <%= post.user.nickname %></span>
             <% if post.post_photo.present? %>
-              <%= cl_image_tag post.post_photo, height: 100, width: 200 %>
+              <%= cl_image_tag post.post_photo %>
             <% else %>
-              <!-- Gérer le cas où la photo est absente -->
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Pas_d%27image_disponible.svg/1024px-Pas_d%27image_disponible.svg.png" alt="Pas d'image disponible">
             <% end %>
-            <h5 class="card-title"><%= post.title %></h5>
-            <p class="card-text"><%= post.description %></p>
-            <%= link_to 'voir le post', post_path(post), class: "btn btn-secondary" %>
-            <p class="card-text">
-              <small class="text-muted">
-                Posté par l'utilisateur <%= post.user.nickname %>
-              </small>
-            </p>
+          </div>
+          <div class="card_content">
+            <h2 class="card_title"><%= post.title %></h2>
+            <div class="card_text">
+              <p><%= post.description %></p>
+              <hr />
+              <%= link_to 'Voir le post', post_path(post), class: "btn post-btn" %>
+            </div>
           </div>
         </div>
-      </div>
+      </li>
     <% end %>
-  </div>
+  </ul>
 </div>
