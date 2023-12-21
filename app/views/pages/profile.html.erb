@@ -1,0 +1,8 @@
+<h1>User Profile</h1>
+
+<% if @user %>
+  <p>Name: <%= @user.nickname %></p>
+  <p>Email: <%= @user.email %></p>
+<% else %>
+  <p>User not found.</p>
+<% end %>

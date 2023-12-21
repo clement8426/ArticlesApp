@@ -1,0 +1,11 @@
+.hidden-checkbox {
+  display: none;
+}
+
+.comment-form {
+  display: none;
+}
+
+.hidden-checkbox:checked + .comment-form {
+  display: block;
+}
