@@ -1,32 +1,35 @@
-<div class="container">
-  <div class="row mt-4 mb-4">
-    <div class="col-md-12 d-flex justify-content-center">
-      <%= simple_form_for :query, url: root_path, method: :get, data: { controller: "search", action: "send" } do |f| %>
-        <div class="input-group">
-          <%= text_field_tag :query,
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= asset_path('bg.jpg') %>);">
+  <div class="container">
+    <h1>Bienvenue sur notre Hub d'Informations !</h1>
+    <p>Explorez et contribuez à une plateforme où vous pouvez publier et discuter d'articles informatifs.</p>
+    <%= simple_form_for :query, url: posts_path, method: :get, data: { controller: "search", action: "send" } do |f| %>
+      <div class="input-group">
+        <%= text_field_tag :query,
                 params[:query],
                 class: "form-control border-0 rounded-pill",
-                placeholder: "Search posts"
-            %>
-          <%= submit_tag "Search", name: "", class: "btn btn-secondary ml-2" %>
-        </div>
-      <% end %>
-    </div>
+                placeholder: "Rechercher des articles"
+              %>
+        <%= submit_tag "Rechercher", name: "", class: "btn btn-secondary ml-2" %>
+      </div>
+    <% end %>
   </div>
+</div>
 
+<div class="container mt-4">
+  <h2>Notre sélection d’articles</h2>
   <div class="row">
-    <% @posts.each do |post| %>
-      <div class="col-md-4 mb-4">
-        <div class="card" style="width: 18rem;">
+    <% @random_posts.each do |post| %>
+      <div class="col-md-3">
+        <div class="card mb-4">
           <div class="card-body">
+            <% if post.photo.attached? %>
+              <%= cl_image_tag post.photo.key, height: 100, width: 200 %>
+            <% else %>
+              <!-- Gérer le cas où la photo est absente -->
+            <% end %>
             <h5 class="card-title"><%= post.title %></h5>
-            <p class="card-text"><%= post.content %></p>
-              <%= link_to 'voir le post', post_path(post), class: "btn btn-secondary" %>
-              <p class="card-text">
-              <small class="text-muted">
-                Posté par l'utilisateur <%= post.user.nickname %>
-              </small>
-            </p>
+            <p class="card-text"><%= post.description %></p>
+            <%= link_to "Voir l'article", post_path(post), class: 'btn btn-secondary' %>
           </div>
         </div>
       </div>

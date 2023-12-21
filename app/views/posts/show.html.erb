@@ -5,7 +5,9 @@
 
       <div class="card">
         <div class="card-body">
+          <%= cl_image_tag @post.photo.key, height: 300, width: 400, crop: :fill %>
           <h5 class="card-title"><%= @post.title %></h5>
+          <p class="card-title"><%= @post.description %></p>
           <p class="card-text"><%= @post.content %></p>
           <%= link_to 'View Profile', profile_path(user_id: @post.user.id), class: 'btn btn-secondary' %>
           <p class="card-text">Created at: <%= @post.created_at %></p>

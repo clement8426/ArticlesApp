@@ -45,9 +45,13 @@ gem "bootsnap", require: false
 # Use Sass to process CSS
 gem "sassc-rails"
 
-gem 'faker'
+gem "cloudinary"
 
 gem "pg_search"
+
+gem 'dotenv-rails'
+
+gem 'open-uri'
 
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]

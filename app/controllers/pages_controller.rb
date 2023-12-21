@@ -3,9 +3,8 @@ class PagesController < ApplicationController
 
   def home
     @posts = Post.all
-    if params[:query].present?
-      @posts = Post.search_by_title_and_content(params[:query])
-    end
+    @random_posts = @posts.sample(4)
+
   end
 
   def profile
