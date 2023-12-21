@@ -42,7 +42,7 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.save
-        format.html { redirect_to root_path, notice: 'Arcticle ajouté avec succès.' }
+        format.html { redirect_to post_path(@post), notice: 'Article ajouté avec succès.' }
         format.json { render json: @post, status: :created, location: my_profile_path }
       else
         format.html { render :show }

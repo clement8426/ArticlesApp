@@ -1,40 +1,46 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-12">
-      <h1>Mon Profil</h1>
-    </div>
-  </div>
-
-  <div class="row">
     <div class="col-md-6">
-      <h2>Informations de profil</h2>
-      <p>Nom : <%= current_user.nickname %></p>
-      <p>Email : <%= current_user.email %></p>
-    </div>
+      <div class="card">
+        <h2>Informations de profil</h2>
+        <p>Nom : <%= current_user.nickname %></p>
+        <p>Email : <%= current_user.email %></p>
 
-    <div class="col-md-6">
-      <h2>Mes Publications</h2>
-      <% if current_user.posts.any? %>
-        <% current_user.posts.each do |post| %>
-          <p><%= link_to post.title, post_path(post) %></p>
+        <h2>Mes Publications</h2>
+        <% if current_user.posts.any? %>
+          <% current_user.posts.each do |post| %>
+            <p><%= post.title %>       <%= link_to post_path(post) , class: 'link-with-pointer' do %>
+                <svg xmlns="http://www.w3.org/2000/svg" height="16" width="14" viewBox="0 0 448 512">
+                  <path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/>
+                </svg>
+              <% end %>
+            </p>
+            <hr />
+          <% end %>
+        <% else %>
+          <p>Vous n'avez rien posté pour le moment.</p>
         <% end %>
-      <% else %>
-        <p>Vous n'avez rien posté pour le moment.</p>
-      <% end %>
-    </div>
-  </div>
 
-  <div class="row">
-    <div class="col-md-12">
       <h2>Mes Commentaires</h2>
-      <% if current_user.comments.any? %>
-        <% current_user.comments.each do |comment| %>
-          <p><%= link_to comment.post.title, post_path(comment.post) %></p>
-          <p><%= comment.content %></p>
+        <% if current_user.comments.any? %>
+          <% current_user.comments.each do |comment| %>
+            <p><%= comment.content %>       <%= link_to post_path(comment.post), class: 'link-with-pointer' do %>
+                <svg xmlns="http://www.w3.org/2000/svg" height="16" width="14" viewBox="0 0 448 512">
+                  <path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/>
+                </svg>
+              <% end %>
+            </p>
+            <hr />
+          <% end %>
+        <% else %>
+          <p>Vous n'avez encore commenté sur rien.</p>
         <% end %>
-      <% else %>
-        <p>Vous n'avez encore commenté sur rien.</p>
-      <% end %>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <img src="<%= current_user.user_photo %>" alt="Photo de profil" class="img-fluid">
+      <p><strong>Description : </strong><%= current_user.description %></p>
     </div>
   </div>
 </div>
