@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-8 offset-md-2">
-      <%= link_to "Retour sur la page d'accueil", root_path, class: 'btn btn-secondary mb-3' %>
+      <%= link_to "Tous les articles", posts_path, class: 'btn btn-secondary mb-3' %>
 
       <div class="card">
         <div class="card-body">
@@ -31,11 +31,10 @@
 
           <input type="checkbox" id="comment-form-toggle" class="hidden-checkbox">
 
-          <form class="comment-form" action="<%= create_comment_post_path(@post) %>" method="post">
-
-            <textarea name="comment[content]" placeholder="Your comment"></textarea>
-            <%= submit_tag "ajouter", class: "btn btn-secondary" %>
-          </form>
+          <%= simple_form_for Comment.new, url: create_comment_post_path(@post), method: :post, html: { class: 'comment-form' } do |f| %>
+            <%= f.input :content, as: :text, placeholder: "Your comment", input_html: { rows: 3 } %>
+            <%= f.button :submit, "Ajouter", class: "btn btn-secondary" %>
+          <% end %>
 
           <label for="comment-form-toggle" class="btn btn-secondary">Ajouter un commentaire</label>
         </div>
