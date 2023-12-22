@@ -12,6 +12,14 @@ Post.destroy_all
 Comment.destroy_all
 User.destroy_all
 
+websites = [
+  "https://www.bfmtv.com/",
+  "https://www.cnews.fr/",
+  "https://www.lefigaro.fr/",
+  "https://www.ledauphine.com/",
+  "https://www.leparisien.fr/"
+]
+
 post_links = [
   "https://images.pexels.com/photos/4050347/pexels-photo-4050347.jpeg?cs=srgb&dl=pexels-vlada-karpovich-4050347.jpg&fm=jpg",
   "https://img.freepik.com/photos-premium/annuaire-telephonique-portable-table-bois_36923-1057.jpg?size=626&ext=jpg",
@@ -56,7 +64,7 @@ users = []
     title: Faker::Lorem.sentence,
     description: Faker::Lorem.sentences(number: 5).join(" "),
     content: Faker::Lorem.sentences(number: 20).join("\n"),
-    url: Faker::Internet.url,
+    url: websites.sample,
     user_id: user.id,
     post_photo: post_links[compteur]
   )

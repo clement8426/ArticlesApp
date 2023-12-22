@@ -40,21 +40,17 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.user = current_user
 
-    respond_to do |format|
-      if @post.save
-        format.html { redirect_to post_path(@post), notice: 'Article ajouté avec succès.' }
-        format.json { render json: @post, status: :created, location: my_profile_path }
-      else
-        format.html { render :show }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
-      end
+    if @post.save
+      redirect_to post_path(@post), notice: 'Article ajouté avec succès.'
+    else
+      render :new, status: :unprocessable_entity
     end
   end
 
   private
 
   def post_params
-    params.require(:post).permit(:title, :content, :url, :post_photo)
+    params.require(:post).permit(:title, :content, :url, :post_photo, :description)
   end
 
   def comment_params
