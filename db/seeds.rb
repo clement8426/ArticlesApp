@@ -19,6 +19,7 @@ websites = [
   "https://www.ledauphine.com/",
   "https://www.leparisien.fr/"
 ]
+# ps je n'ai pas utilisé cloundinary car mon compte ne fonctionne car il a été bloqué pour cause de trop de photos uploadées pour la version gratuite
 
 post_links = [
   "https://images.pexels.com/photos/4050347/pexels-photo-4050347.jpeg?cs=srgb&dl=pexels-vlada-karpovich-4050347.jpg&fm=jpg",
@@ -49,6 +50,8 @@ compteur = 0
 
 users = []
 
+
+
 10.times do
   user = User.create(
     email: Faker::Internet.email,
@@ -60,24 +63,29 @@ users = []
   user.save!
   users << user
 
-  post = Post.create(
-    title: Faker::Lorem.sentence,
-    description: Faker::Lorem.sentences(number: 5).join(" "),
-    content: Faker::Lorem.sentences(number: 20).join("\n"),
-    url: websites.sample,
-    user_id: user.id,
-    post_photo: post_links[compteur]
-  )
-  post.save!
-  compteur += 1
-
-  2.times do
-    Comment.create!(
-      content: Faker::Lorem.sentence,
+  3.times do
+    post = Post.create(
+      title: Faker::Lorem.sentence,
+      description: Faker::Lorem.sentences(number: 5).join(" "),
+      content: Faker::Lorem.sentences(number: 20).join("\n"),
+      url: websites.sample,
       user_id: user.id,
-      post_id: post.id
+      post_photo: post_links.sample
     )
+    post.save!
   end
+
+  user.posts.each do |post|
+    2.times do
+      Comment.create!(
+        content: Faker::Lorem.sentence,
+        user_id: user.id,
+        post_id: post.id
+      )
+    end
+  end
+
+  compteur += 1
 end
 
 puts "Users, Posts, and Comments finished"
