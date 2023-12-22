@@ -1,0 +1,26 @@
+<div class="main">
+  <ul class="cards">
+    <% @posts.each do |post| %>
+      <li class="cards_item">
+        <div class="card">
+          <div class="card_image">
+            <span class="note">Auteur: <%= post.user.nickname.capitalize %></span>
+            <% if post.post_photo.present? %>
+              <%= cl_image_tag post.post_photo %>
+            <% else %>
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Pas_d%27image_disponible.svg/1024px-Pas_d%27image_disponible.svg.png" alt="Pas d'image disponible">
+            <% end %>
+          </div>
+          <div class="card_content">
+            <h2 class="card_title"><%= post.title %></h2>
+            <div class="card_text">
+              <p><%= post.description %></p>
+              <hr />
+              <%= link_to 'Voir le post', post_path(post), class: "btn post-btn" %>
+            </div>
+          </div>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+</div>

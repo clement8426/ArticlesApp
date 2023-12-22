@@ -7,7 +7,8 @@
         <div class="row no-gutters">
           <div class="col-md-6">
             <div class="card-body">
-              <h3 class="card-title"><%= @post.title %></h3>
+              <h3 class="card-title"><%= @post.title.capitalize %></h3>
+              <p class="card-title"><strong>Auteur : </strong><%= @post.user.nickname.capitalize %></p>
               <p class="card-title"><strong>Description : </strong><%= @post.description %></p>
               <%= link_to "Voir l'auteur", profile_path(user_id: @post.user.id), class: 'btn btn-primary author-btn' %>
               <%= link_to "Voir l'URL de la source", @post.url, class: 'btn btn-primary url-btn', target: '_blank' %>
@@ -30,7 +31,7 @@
           <h5 class="card-title">Commentaires</h5>
         <% if @comments.present? %>
           <% @comments.each do |comment| %>
-            <p class="card-text"><strong><%= comment.user.nickname %>:</strong> <%= comment.content %></p>
+            <p class="card-text"><strong><%= comment.user.nickname.capitalize %>:</strong> <%= comment.content %></p>
           <% end %>
         <% else %>
           <p>No comments available.</p>

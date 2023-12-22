@@ -3,20 +3,22 @@
     <div class="col-md-8 offset-md-2">
       <h2>Créer un nouvel article</h2>
       <%= simple_form_for @post do |f| %>
+        <div class="form-inputs">
 
-            <%= f.input :title, input_html: { class: "form-control" }, placeholder: "Titre de l'article", label: false %>
+          <%= f.input :title, input_html: { class: "form-control" }, placeholder: "Titre de l'article", label: false %>
 
-            <%= f.input :description, input_html: { class: "form-control" }, placeholder: "Description de l'article", label: false %>
+          <%= f.input :description, input_html: { class: "form-control" }, placeholder: "Description de l'article", label: false %>
 
-            <%= f.text_area :content,  input_html: { class: "form-control", rows: 10 }, class: "form-control", placeholder: "Contenu de l'article", label: false %>
+          <%= f.input :content, as: :text, input_html: { class: "form-control", rows: 5 }, placeholder: "Contenu de l'article", label: false %>
 
-            <%= f.input :url, input_html: { class: "form-control" }, placeholder: "URL de la source", label: false %>
+          <%= f.input :url, input_html: { class: "form-control" }, placeholder: "URL de la source", label: false %>
 
-            <%= f.input :post_photo, input_html: { class: "form-control" }, placeholder: "URL de la photo de l'article", label: false %>
+          <%= f.input :post_photo, input_html: { class: "form-control" }, placeholder: "URL de la photo de l'article", label: false %>
 
-            <div class="form-group text-center">
-              <%= f.submit "Créer l'article", class: "btn btn-primary" %>
-            </div>
+          <div class="form-group text-center">
+            <%= f.submit "Créer l'article", class: "btn btn-primary" %>
+          </div>
+        </div>
       <% end %>
     </div>
   </div>

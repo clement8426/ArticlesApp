@@ -2,9 +2,11 @@
   <div class="input-group">
     <%= text_field_tag :query,
             params[:query],
-            class: "form-control ",
+            class: "form-control",
             placeholder: "Rechercher des articles"
           %>
-    <%= submit_tag "Rechercher", name: "", class: "btn btn-primary ml-2 " %>
+    <div class="input-group-append">
+      <%= submit_tag "Rechercher", name: "", class: "btn btn-primary" %>
+    </div>
   </div>
 <% end %>
