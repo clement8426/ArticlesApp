@@ -45,10 +45,12 @@
 
           <input type="checkbox" id="comment-form-toggle" class="hidden-checkbox">
 
-          <%= simple_form_for Comment.new, url: create_comment_post_path(@post), method: :post, html: { class: 'comment-form' } do |f| %>
-            <%= f.input :content, as: :text, placeholder: "Votre commentaire", input_html: { rows: 3 } %>
-            <%= f.button :submit, "Ajouter", class: "btn btn-primary " %>
-          <% end %>
+
+            <%= simple_form_for Comment.new, url: create_comment_post_path(@post), method: :post, html: { class: 'comment-form' } do |f| %>
+              <%= f.input :content, as: :text, input_html: { class: "form-control", rows: 3 }, placeholder: "Votre commentaire" %>
+              <%= f.button :submit, "Ajouter", class: "btn btn-primary " %>
+            <% end %>
+
 
           <label for="comment-form-toggle" class="btn btn-primary sumbit-form" data-action="click->down-page-show#scrollDown">Ajouter un commentaire</label>
         </div>
