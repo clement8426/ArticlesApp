@@ -143,3 +143,21 @@ hr {
 .link-with-pointer {
   cursor: pointer;
 }
+
+.square-image {
+  width: 200px;
+  height: 0;
+  padding-bottom: 200px;
+  position: relative;
+  overflow: hidden;
+  max-width: 100%; /* Optional: Set a maximum width for the square container */
+}
+
+.square-image img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: auto;
+}

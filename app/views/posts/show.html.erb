@@ -4,18 +4,24 @@
       <%= link_to "Tous les articles", posts_path, class: 'btn btn-primary mb-3' %>
 
       <div class="card">
-        <div class="card-body">
-          <% if @post.post_photo.present? %>
-            <%= cl_image_tag @post.post_photo, height: 300, width: 400, crop: :fill %>
-          <% else %>
-              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Pas_d%27image_disponible.svg/1024px-Pas_d%27image_disponible.svg.png" alt="Pas d'image disponible">
-          <% end %>
-          <h5 class="card-title"><%= @post.title %></h5>
-          <p class="card-title"><%= @post.description %></p>
-          <p class="card-text"><%= @post.content %></p>
-          <%= link_to 'Voir le profil', profile_path(user_id: @post.user.id), class: 'btn btn-primary' %>
-          <p class="card-text">Créé à : <%= @post.created_at %></p>
+        <div class="row no-gutters">
+          <div class="col-md-6">
+            <div class="card-body">
+              <h5 class="card-title"><%= @post.title %></h5>
+              <p class="card-title"><%= @post.description %></p>
+              <%= link_to "Voir l'auteur", profile_path(user_id: @post.user.id), class: 'btn btn-primary' %>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <% if @post.post_photo.present? %>
+              <%= cl_image_tag @post.post_photo, height: 300, width: 400, crop: :fill, class: "card-img" %>
+            <% else %>
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Pas_d%27image_disponible.svg/1024px-Pas_d%27image_disponible.svg.png" alt="Pas d'image disponible" class="card-img">
+            <% end %>
+          </div>
         </div>
+        <p class="card-text"><%= @post.content %></p>
       </div>
 
       <div class="card mt-3">
@@ -41,6 +47,7 @@
           <label for="comment-form-toggle" class="btn btn-primary sumbit-form">Ajouter un commentaire</label>
         </div>
       </div>
+
     </div>
   </div>
 </div>
