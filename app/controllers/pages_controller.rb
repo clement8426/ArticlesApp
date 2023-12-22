@@ -3,15 +3,17 @@ class PagesController < ApplicationController
 
   def home
     @posts = Post.all
-    @random_posts = @posts.sample(3)
+    @posts = @posts.sample(3)
 
   end
 
   def profile
     @user = User.find(params[:user_id])
+    @posts = @user.posts
   end
 
   def my_profile
     @user = current_user
+    @posts = @user.posts
   end
 end
