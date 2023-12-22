@@ -1,15 +1,16 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-8 offset-md-2">
+    <div class="col-md-8 offset-md-2" data-controller="down-page-show">
       <%= link_to "Tous les articles", posts_path, class: 'btn btn-primary mb-3' %>
 
       <div class="card">
         <div class="row no-gutters">
           <div class="col-md-6">
             <div class="card-body">
-              <h5 class="card-title"><%= @post.title %></h5>
-              <p class="card-title"><%= @post.description %></p>
-              <%= link_to "Voir l'auteur", profile_path(user_id: @post.user.id), class: 'btn btn-primary' %>
+              <h3 class="card-title"><%= @post.title %></h3>
+              <p class="card-title"><strong>Description : </strong><%= @post.description %></p>
+              <%= link_to "Voir l'auteur", profile_path(user_id: @post.user.id), class: 'btn btn-primary author-btn' %>
+              <%= link_to "Voir l'URL de la source", @post.url, class: 'btn btn-primary url-btn', target: '_blank' %>
             </div>
           </div>
 
@@ -21,15 +22,19 @@
             <% end %>
           </div>
         </div>
-        <p class="card-text"><%= @post.content %></p>
+        <p class="card-content"><%= @post.content %></p>
       </div>
 
       <div class="card mt-3">
         <div class="card-body">
           <h5 class="card-title">Commentaires</h5>
+        <% if @comments.present? %>
           <% @comments.each do |comment| %>
             <p class="card-text"><strong><%= comment.user.nickname %>:</strong> <%= comment.content %></p>
           <% end %>
+        <% else %>
+          <p>No comments available.</p>
+        <% end %>
         </div>
       </div>
 
@@ -44,7 +49,7 @@
             <%= f.button :submit, "Ajouter", class: "btn btn-primary " %>
           <% end %>
 
-          <label for="comment-form-toggle" class="btn btn-primary sumbit-form">Ajouter un commentaire</label>
+          <label for="comment-form-toggle" class="btn btn-primary sumbit-form" data-action="click->down-page-show#scrollDown">Ajouter un commentaire</label>
         </div>
       </div>
 

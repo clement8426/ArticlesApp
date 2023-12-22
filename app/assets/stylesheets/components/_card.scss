@@ -150,7 +150,7 @@ hr {
   padding-bottom: 200px;
   position: relative;
   overflow: hidden;
-  max-width: 100%; /* Optional: Set a maximum width for the square container */
+  max-width: 100%;
 }
 
 .square-image img {
@@ -160,4 +160,21 @@ hr {
   transform: translate(-50%, -50%);
   width: 100%;
   height: auto;
+}
+
+.card-content {
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.url-btn {
+  margin-top: 10px;
+}
+
+.author-btn {
+  margin-top: 10px;
+}
+
+.form-control {
+  margin-bottom: 10px;
 }
