@@ -40,8 +40,8 @@ Effectuez les modifications du code nécessaires à l'implémentation des parcou
 - La page affichant les détails d'une publication doit contenir un lien permettant de retourner sur la page listant toutes les publications.
 - La page affichant les détails d'une publication doit contenir le formulaire permettant de faire un commentaire.
 - La page affichant les détails d'une publication doit afficher la liste des commentaires associés.
-- Lorsque l'utilisateur crée un compte, il doit renseigner son pseudonyme dans le formulaire. Vous pouvez vous référer à la <a href="https://github.com/heartcombo/devise" target="_blank">documentation de `devise`</a> à ce sujet.
-- Le formulaire de commentaire doit comporter un champ de texte multiligne pour faciliter la saisie de long commentaire. Vous pouvez vous référer à la <a href="https://github.com/heartcombo/simple_form" target="_blank">documentation de `simple_form`</a> à ce sujet.
+- Lorsque l'utilisateur crée un compte, il doit renseigner son pseudonyme dans le formulaire. 
+- Le formulaire de commentaire doit comporter un champ de texte multiligne pour faciliter la saisie de long commentaire. 
 - Lors de la soumission d'un commentaire, l'utilisateur doit être redirigé vers la page de détails de la publication et une <a href="https://www.rubyguides.com/2019/11/rails-flash-messages/" target="_blank">notification flash</a> doit s'afficher pour confirmer la sauvegarde du commentaire.
 
 
