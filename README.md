@@ -1,22 +1,4 @@
-# Rails Share Posts
 
-Dans cet exercice, vous devez implémenter des fonctionnalités dans une application web `rails` à partir du cahier des charges spécifié ci-dessous et correspondant à votre sujet :
-
-```
-Vous devez créer une plateforme pour publier et commenter des articles d'information
-```
-
-## Setup
-
-Clonez le dépôt GitHub et exécutez les commandes habituelles vous permettant de lancer l'application sur votre ordinateur.
-
-Si vous voyez s'afficher le message `rbenv: version 3.1.2 is not installed`, exécutez la commande suivante pour installez la version de `ruby` correspondante :
-
-```bash
-rbenv install 3.1.2 && gem install bundler rubocop pry pry-byebug
-```
-
-Vous pourrez alors réexécuter les commandes habituelles vous permettant de lancer l'application.
 
 ## Base de données
 
@@ -40,7 +22,6 @@ Un commentaire n'est pas valide :
 
 La suppression d'un utilisateur doit entraîner la suppression de ses publications et de ses commentaires. La suppression d'une publication doit entraîner la suppression de ses commentaires.
 
-**NB :** La gem `devise` a déjà été ajoutée et la table `users` a déjà été créée.
 
 ## Interface utilisateur
 
@@ -63,9 +44,4 @@ Effectuez les modifications du code nécessaires à l'implémentation des parcou
 - Le formulaire de commentaire doit comporter un champ de texte multiligne pour faciliter la saisie de long commentaire. Vous pouvez vous référer à la <a href="https://github.com/heartcombo/simple_form" target="_blank">documentation de `simple_form`</a> à ce sujet.
 - Lors de la soumission d'un commentaire, l'utilisateur doit être redirigé vers la page de détails de la publication et une <a href="https://www.rubyguides.com/2019/11/rails-flash-messages/" target="_blank">notification flash</a> doit s'afficher pour confirmer la sauvegarde du commentaire.
 
-## Ressources
 
-Pour avoir une interface soignée, nous vous conseillons d'utiliser :
-
-- <a href="https://getbootstrap.com/docs/4.6/getting-started/introduction/" target="_blank">Bootstrap</a> (déjà installé)
-- <a href="https://uikit.lewagon.com/" target="_blank">L'UI Kit du Wagon</a>
