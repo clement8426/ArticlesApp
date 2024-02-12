@@ -1,4 +1,6 @@
+## ArticlesApp
 
+Cette application web a été développée en utilisant Ruby on Rails et Bootstrap dans le cadre d'un projet d'examen. L'objectif était de suivre les instructions ci-dessous et de réaliser l'application dans un délai de 8 heures.
 
 ## Base de données
 
